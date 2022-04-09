@@ -1,0 +1,23 @@
+.userContainer {
+  margin-top: 2rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(167, 181, 245, 0.65);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.userImage {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 0.2rem solid rgba(167, 181, 245, 0.65);
+  margin-bottom: 0.2rem;
+}
+
+.userName {
+  font-weight: 400;
+}

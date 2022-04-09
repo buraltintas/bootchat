@@ -1,0 +1,17 @@
+.logoContainer {
+  margin-top: 2rem;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.logoIcon {
+  width: 3.4rem;
+}
+
+.logoName {
+  font-family: 'Source Code Pro';
+  font-size: 3rem;
+}
