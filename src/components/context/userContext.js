@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-
 import { app } from '../firebase/firebase';
 import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
-  onAuthStateChanged,
   signOut,
 } from 'firebase/auth';
 

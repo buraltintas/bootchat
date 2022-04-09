@@ -1,0 +1,90 @@
+.chatScreenContainer {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+  height: calc(100vh - 5rem);
+  overflow: scroll;
+  padding: 2rem;
+  border: 1px solid #4f6aeb;
+  border-radius: 2rem;
+}
+
+.messagesContainer {
+  height: 95%;
+  overflow: scroll;
+}
+
+.dummyDiv {
+  height: 5rem;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.photo {
+  width: 4rem;
+  border-radius: 50%;
+}
+
+.text {
+  padding: 1rem;
+  border: 1px solid #a7b5f5;
+  border-radius: 2rem;
+  font-size: 1.4rem;
+}
+
+.userName {
+  font-size: 1.2rem;
+  color: #a7b5f5;
+  font-weight: 600;
+}
+
+.formContainer {
+  width: 100%;
+  position: sticky;
+  bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatForm {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.sendIcon {
+  width: 2.4rem;
+}
+
+.input {
+  width: 70%;
+  height: 2rem;
+  border: 1px solid #4f6aeb;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-size: 16px;
+}
+
+.sendButton {
+  border-radius: 0.6rem;
+  background-color: rgb(243, 243, 245);
+  color: #4f6aeb;
+  font-size: 1.4rem;
+  font-weight: 400;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transform: rotate(25deg) translateY(-0.4rem);
+  transition: all 0.3s;
+}
+
+.sendButton:hover {
+  transform: rotate(90deg) translateY(-0.4rem);
+}
