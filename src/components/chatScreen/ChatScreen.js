@@ -1,50 +1,84 @@
 import { useContext, useEffect, useState, useRef } from 'react';
 import styles from './ChatScreen.module.css';
 import { userContext } from '../context/userContext';
+import { v4 as uuidv4 } from 'uuid';
+import {
+  fetchChannels,
+  subscribeToMessages,
+  sendMessage,
+  fetchChannelMessages,
+} from '../helpers/socket';
 
 const ChatScreen = () => {
   const { user, isLoggedIn } = useContext(userContext);
   const inputRef = useRef('');
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState('');
+  const [message, setMessage] = useState('');
+  const [channel, setChannel] = useState('general');
+  const [channels, setChannels] = useState([]);
 
   const dummy = useRef();
 
-  const getData = async () => {
-    const response = await fetch(
-      'https://bootchat-server.herokuapp.com/getChannels'
-    );
+  useEffect(() => {
+    fetchChannels().then((res) => {
+      console.log(res);
+      setChannels(res);
+    });
 
-    const data = await response.json();
+    subscribeToMessages((err, data) => {
+      setMessages((messages) => [...messages, data]);
+    });
+  }, []);
 
-    console.log(data);
-  };
+  useEffect(() => {
+    fetchChannelMessages('general');
+  }, [text]);
 
-  // useEffect(() => {
-  //   getData();
-  // }, []);
+  console.log(channels);
+  console.log(messages);
 
-  const handleSubmit = (e) => {
+  const handleMessageSend = (e) => {
+    // if (!message) return;
+
     e.preventDefault();
 
-    const message = inputRef.current.value;
+    setMessage(inputRef.current.value);
 
-    const photo = user.photo;
-
-    const name = user.name;
-
-    const item = {
-      message,
-      photo,
-      name,
+    const data = {
+      id: uuidv4(),
+      channel,
+      user: user.name,
+      body: inputRef.current.value,
+      time: Date.now(),
     };
 
-    setMessages([...messages, item]);
-
-    setText('');
+    setMessages((messages) => [...messages, data]);
+    sendMessage(data);
+    setMessage('');
 
     dummy.current.scrollIntoView({ behavior: 'smooth' });
   };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   const message = inputRef.current.value;
+
+  //   const photo = user.photo;
+
+  //   const name = user.name;
+
+  //   const item = {
+  //     message,
+  //     photo,
+  //     name,
+  //   };
+
+  //   setMessages([...messages, item]);
+
+  //   setText('');
+  // };
 
   return (
     <>
@@ -67,7 +101,7 @@ const ChatScreen = () => {
           </div>
 
           <div className={styles.formContainer}>
-            <form onSubmit={handleSubmit} className={styles.chatForm}>
+            <form onSubmit={handleMessageSend} className={styles.chatForm}>
               <input
                 ref={inputRef}
                 value={text}
