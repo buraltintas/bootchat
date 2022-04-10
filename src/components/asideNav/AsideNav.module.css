@@ -23,5 +23,6 @@
     height: 50rem;
     border-radius: 1rem;
     outline: 1rem solid transparent;
+    background-color: rgba(79, 105, 235, 0.75);
   }
 }
