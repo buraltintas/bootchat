@@ -18,7 +18,6 @@
   position: sticky;
   top: 0;
   width: 100%;
-
   background-color: rgba(243, 243, 245);
   border-bottom: 1px solid #4f6aeb;
   color: #4f6aeb;
@@ -106,4 +105,16 @@
 
 .sendButton:hover {
   transform: rotate(90deg) translateY(-0.4rem);
+}
+
+@media (max-width: 85em) {
+  .chatScreenContainer {
+    width: 60%;
+  }
+}
+
+@media (max-width: 41em) {
+  .chatScreenContainer {
+    width: 90%;
+  }
 }

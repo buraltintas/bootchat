@@ -19,8 +19,6 @@ const ChatScreen = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(user.uid);
-
     const docRef = await addDoc(collection(db, `${collectionName}`), {
       message: `${inputRef.current.value}`,
       photo: `${user.photo}`,
@@ -28,8 +26,6 @@ const ChatScreen = () => {
       email: `${user.email}`,
       time: Math.floor(new Date().getTime() / 1000),
     });
-
-    console.log(docRef.id);
 
     setText('');
   };

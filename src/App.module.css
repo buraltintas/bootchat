@@ -3,3 +3,9 @@
   display: flex;
   align-items: center;
 }
+
+@media (max-width: 41em) {
+  .container {
+    flex-direction: column;
+  }
+}

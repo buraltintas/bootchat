@@ -18,3 +18,9 @@ body {
   box-sizing: inherit;
   background-color: rgb(243, 243, 245);
 }
+
+@media (max-width: 50em) {
+  html {
+    font-size: 50%;
+  }
+}

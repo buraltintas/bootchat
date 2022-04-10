@@ -36,7 +36,6 @@ const UserProvider = ({ children }) => {
     setIsLoading(true);
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log(result);
         handleLogin({
           name: result._tokenResponse.fullName,
           photo: result._tokenResponse.photoUrl,
