@@ -8,6 +8,16 @@
   gap: 4rem;
 }
 
+.welcome {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.5rem;
+}
+
 .loginButton {
   width: 60%;
   height: 3rem;

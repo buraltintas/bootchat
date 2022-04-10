@@ -24,6 +24,7 @@ const Footer = () => {
         >
           Burak Altıntaş
         </a>
+        <br />
         All rights reserved.
       </p>
     </footer>

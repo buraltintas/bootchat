@@ -1,26 +1,30 @@
+import { useContext } from 'react';
+import { userContext } from '../context/userContext';
 import styles from './Channels.module.css';
 
 const Channels = () => {
+  const { getCollectionName } = useContext(userContext);
+
   return (
     <div className={styles.channelsContainer}>
-      <div className={styles.channelName}>
+      <div
+        onClick={() => getCollectionName('sohbet')}
+        className={styles.channelName}
+      >
         <p className={styles.hash}>#</p>{' '}
-        <h2 className={styles.channelTitle}>Genel</h2>
+        <h2 className={styles.channelTitle}>Sohbet</h2>
       </div>
-      <div className={styles.channelName}>
-        <p className={styles.hash}>#</p> <h2>Duyurular</h2>
+      <div
+        onClick={() => getCollectionName('not paylaşımı')}
+        className={styles.channelName}
+      >
+        <p className={styles.hash}>#</p> <h2>Not Paylaşımı</h2>
       </div>
-      <div className={styles.channelName}>
-        <p className={styles.hash}>#</p> <h2>Ödevler</h2>
-      </div>
-      <div className={styles.channelName}>
-        <p className={styles.hash}>#</p> <h2>Projeler</h2>
-      </div>
-      <div className={styles.channelName}>
-        <p className={styles.hash}>#</p> <h2>Soru-cevap</h2>
-      </div>
-      <div className={styles.channelName}>
-        <p className={styles.hash}>#</p> <h2>Goygoy</h2>
+      <div
+        onClick={() => getCollectionName('test ve geliştirme')}
+        className={styles.channelName}
+      >
+        <p className={styles.hash}>#</p> <h2>Test & Geliştirme</h2>
       </div>
     </div>
   );

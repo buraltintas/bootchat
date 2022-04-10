@@ -9,7 +9,7 @@ const Login = () => {
 
   return (
     <div className={styles.login}>
-      <h1>Hoş geldiniz</h1>
+      <h1 className={styles.welcome}>Hoş geldiniz</h1>
       {!isLoading && (
         <button
           className={styles.loginButton}

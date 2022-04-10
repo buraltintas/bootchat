@@ -1,107 +1,82 @@
-import { useContext, useEffect, useState, useRef } from 'react';
+import { useContext, useState, useRef, useEffect } from 'react';
 import styles from './ChatScreen.module.css';
 import { userContext } from '../context/userContext';
-import { v4 as uuidv4 } from 'uuid';
-import {
-  fetchChannels,
-  subscribeToMessages,
-  sendMessage,
-  fetchChannelMessages,
-} from '../helpers/socket';
+import { collection, addDoc, getFirestore } from 'firebase/firestore';
+import { app } from '../firebase/firebase';
+import BackgroundVideo from '../backgroundVideo/BackgroundVideo';
+
+const db = getFirestore(app);
 
 const ChatScreen = () => {
-  const { user, isLoggedIn } = useContext(userContext);
+  const { user, isLoggedIn, messages, collectionName } =
+    useContext(userContext);
   const inputRef = useRef('');
-  const [messages, setMessages] = useState([]);
+
   const [text, setText] = useState('');
-  const [message, setMessage] = useState('');
-  const [channel, setChannel] = useState('general');
-  const [channels, setChannels] = useState([]);
 
   const dummy = useRef();
 
-  useEffect(() => {
-    fetchChannels().then((res) => {
-      console.log(res);
-      setChannels(res);
-    });
-
-    subscribeToMessages((err, data) => {
-      setMessages((messages) => [...messages, data]);
-    });
-  }, []);
-
-  useEffect(() => {
-    fetchChannelMessages('general');
-  }, [text]);
-
-  console.log(channels);
-  console.log(messages);
-
-  const handleMessageSend = (e) => {
-    // if (!message) return;
-
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setMessage(inputRef.current.value);
+    console.log(user.uid);
 
-    const data = {
-      id: uuidv4(),
-      channel,
-      user: user.name,
-      body: inputRef.current.value,
-      time: Date.now(),
-    };
+    const docRef = await addDoc(collection(db, `${collectionName}`), {
+      message: `${inputRef.current.value}`,
+      photo: `${user.photo}`,
+      name: `${user.name}`,
+      email: `${user.email}`,
+      time: Math.floor(new Date().getTime() / 1000),
+    });
 
-    setMessages((messages) => [...messages, data]);
-    sendMessage(data);
-    setMessage('');
+    console.log(docRef.id);
 
-    dummy.current.scrollIntoView({ behavior: 'smooth' });
+    setText('');
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   const message = inputRef.current.value;
-
-  //   const photo = user.photo;
-
-  //   const name = user.name;
-
-  //   const item = {
-  //     message,
-  //     photo,
-  //     name,
-  //   };
-
-  //   setMessages([...messages, item]);
-
-  //   setText('');
-  // };
+  useEffect(() => {
+    if (dummy.current) {
+      dummy?.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
 
   return (
     <>
-      {isLoggedIn && (
+      {isLoggedIn ? (
         <div className={styles.chatScreenContainer}>
           <div className={styles.messagesContainer}>
+            <h1 className={styles.collectionName}>
+              #{' '}
+              {collectionName.charAt(0).toUpperCase() + collectionName.slice(1)}
+            </h1>
             {messages.length > 0 &&
-              messages.map((message, index) => (
-                <div key={index} className={styles.message}>
-                  <img
-                    className={styles.photo}
-                    src={message.photo}
-                    alt='user profile'
-                  />
-                  <p className={styles.text}>{message.message}</p>
-                  <p className={styles.userName}>{message.name}</p>
-                </div>
-              ))}
+              messages
+                .sort(function (x, y) {
+                  return x.time - y.time;
+                })
+                .map((message, index) => (
+                  <div
+                    key={index}
+                    className={
+                      message.email === user.email
+                        ? styles.myMessage
+                        : styles.message
+                    }
+                  >
+                    <img
+                      className={styles.photo}
+                      src={message.photo}
+                      alt='user profile'
+                    />
+                    <p className={styles.text}>{message.message}</p>
+                    <p className={styles.userName}>{message.name}</p>
+                  </div>
+                ))}
             <div ref={dummy} className={styles.dummyDiv}></div>
           </div>
 
           <div className={styles.formContainer}>
-            <form onSubmit={handleMessageSend} className={styles.chatForm}>
+            <form onSubmit={handleSubmit} className={styles.chatForm}>
               <input
                 ref={inputRef}
                 value={text}
@@ -129,6 +104,8 @@ const ChatScreen = () => {
             </form>
           </div>
         </div>
+      ) : (
+        <BackgroundVideo />
       )}
     </>
   );
