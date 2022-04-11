@@ -69,6 +69,18 @@
   font-weight: 600;
 }
 
+.dateAndTime {
+  display: none;
+}
+
+.message:hover .dateAndTime {
+  display: block;
+}
+
+.myMessage:hover .dateAndTime {
+  display: block;
+}
+
 .formContainer {
   width: 100%;
   position: sticky;
