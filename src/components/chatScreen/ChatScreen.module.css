@@ -7,6 +7,7 @@
   padding: 2rem;
   border: 1px solid #4f6aeb;
   border-radius: 2rem;
+  color: #202a5e;
 }
 
 .messagesContainer {
@@ -54,6 +55,7 @@
 .photo {
   width: 4rem;
   border-radius: 50%;
+  border: 1px solid rgba(79, 105, 235, 0.4);
 }
 
 .text {
@@ -84,7 +86,7 @@
 .formContainer {
   width: 100%;
   position: sticky;
-  bottom: 0.5rem;
+  bottom: 0.1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,7 +97,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.2rem;
+  gap: 1rem;
 }
 
 .sendIcon {
@@ -104,9 +106,9 @@
 
 .input {
   width: 70%;
-  height: 2rem;
+  height: 1.8rem;
   border: 1px solid #4f6aeb;
-  border-radius: 1rem;
+  border-radius: 20rem;
   padding: 1rem;
   font-size: 16px;
 }
