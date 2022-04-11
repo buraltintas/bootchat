@@ -3,7 +3,8 @@
   width: 70%;
   margin: 0 auto;
   height: calc(100vh - 5rem);
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
   padding: 2rem;
   border: 1px solid #4f6aeb;
   border-radius: 2rem;
