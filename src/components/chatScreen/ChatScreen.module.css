@@ -3,8 +3,6 @@
   width: 70%;
   margin: 0 auto;
   height: calc(100vh - 5rem);
-  overflow-x: auto;
-  overflow-y: hidden;
   padding: 2rem;
   border: 1px solid #4f6aeb;
   border-radius: 2rem;
@@ -13,7 +11,8 @@
 
 .messagesContainer {
   height: 95%;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .collectionName {
