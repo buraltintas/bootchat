@@ -9,7 +9,8 @@ import Login from '../login/Login';
 import { userContext } from '../context/userContext';
 
 const AsideNav = () => {
-  const { isLoggedIn, isMenuOpen, menuOpenHandler } = useContext(userContext);
+  const { isLoggedIn, isMenuOpen, menuOpenHandler, outsideMenuCloser } =
+    useContext(userContext);
 
   const wrapperRef = useRef();
 
@@ -20,7 +21,7 @@ const AsideNav = () => {
        */
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
-          menuOpenHandler(false);
+          outsideMenuCloser(false);
         }
       }
 

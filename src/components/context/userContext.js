@@ -27,8 +27,12 @@ const UserProvider = ({ children }) => {
     setCollectionName(text);
   };
 
+  const outsideMenuCloser = (e) => {
+    setIsMenuOpen(e);
+  };
+
   const menuOpenHandler = (e) => {
-    setIsMenuOpen(e ? e : (prev) => !prev);
+    setIsMenuOpen((prev) => !prev);
   };
 
   useEffect(() => {
@@ -80,6 +84,7 @@ const UserProvider = ({ children }) => {
         getCollectionName,
         isMenuOpen,
         menuOpenHandler,
+        outsideMenuCloser,
       }}
     >
       {children}
