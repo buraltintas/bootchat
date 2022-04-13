@@ -15,6 +15,7 @@ const ChatScreen = () => {
   const [text, setText] = useState('');
 
   const dummy = useRef();
+  const containerRef = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,66 +37,76 @@ const ChatScreen = () => {
     }
   }, [messages]);
 
+  const AlwaysScrollToBottom = () => {
+    const elementRef = useRef();
+    useEffect(() => elementRef.current.scrollIntoView());
+    return <div ref={elementRef} />;
+  };
+
   return (
     <>
       {isLoggedIn ? (
         <div className={styles.chatScreenContainer}>
-          <div className={styles.messagesContainer}>
-            <h1 className={styles.collectionName}>
-              #{' '}
-              {collectionName.charAt(0).toUpperCase() + collectionName.slice(1)}
-            </h1>
+          {messages.length > 0 && (
+            <div className={styles.messagesContainer}>
+              <h1 className={styles.collectionName}>
+                #{' '}
+                {collectionName.charAt(0).toUpperCase() +
+                  collectionName.slice(1)}
+              </h1>
 
-            {messages.length > 0 &&
-              messages
-                .sort(function (x, y) {
-                  return x.time - y.time;
-                })
-                .map((message, index) => {
-                  const date = new Date(message.time * 1000);
-                  const day = '0' + date.getDate();
-                  const month = '0' + (date.getMonth() + 1);
-                  const hours = '0' + date.getHours();
-                  const minutes = '0' + date.getMinutes();
-                  return (
-                    <div
-                      key={index}
-                      className={
-                        message.email === user.email
-                          ? styles.myMessage
-                          : styles.message
-                      }
-                    >
-                      <img
-                        className={styles.photo}
-                        src={message.photo}
-                        alt='user profile'
-                      />
-                      <p
+              {messages.length > 0 &&
+                messages
+                  .sort(function (x, y) {
+                    return x.time - y.time;
+                  })
+                  .map((message, index) => {
+                    const date = new Date(message.time * 1000);
+                    const day = '0' + date.getDate();
+                    const month = '0' + (date.getMonth() + 1);
+                    const hours = '0' + date.getHours();
+                    const minutes = '0' + date.getMinutes();
+                    return (
+                      <div
+                        key={index}
                         className={
                           message.email === user.email
-                            ? styles.myText
-                            : styles.text
+                            ? styles.myMessage
+                            : styles.message
                         }
                       >
-                        {message.message}
-                      </p>
-                      <p className={styles.userName}>
-                        {message.email !== user.email && message.name}
-                      </p>
-                      <p className={styles.dateAndTime}>{`${day.slice(
-                        -2
-                      )}/${month.slice(-2)}/${date.getFullYear()}`}</p>
-                      <p className={styles.dateAndTime}>{`${hours.slice(
-                        -2
-                      )}:${minutes.slice(-2)}`}</p>
-                    </div>
-                  );
-                })}
-            {messages.length > 10 && (
-              <div ref={dummy} className={styles.dummyDiv}></div>
-            )}
-          </div>
+                        <img
+                          className={styles.photo}
+                          src={message.photo}
+                          alt='user profile'
+                        />
+                        <p
+                          className={
+                            message.email === user.email
+                              ? styles.myText
+                              : styles.text
+                          }
+                        >
+                          {message.message}
+                        </p>
+                        <p className={styles.userName}>
+                          {message.email !== user.email && message.name}
+                        </p>
+                        <p className={styles.dateAndTime}>{`${day.slice(
+                          -2
+                        )}/${month.slice(-2)}/${date.getFullYear()}`}</p>
+                        <p className={styles.dateAndTime}>{`${hours.slice(
+                          -2
+                        )}:${minutes.slice(-2)}`}</p>
+                      </div>
+                    );
+                  })}
+              {messages.length > 10 && (
+                <div ref={dummy} className={styles.dummyDiv}></div>
+              )}
+              <AlwaysScrollToBottom />
+            </div>
+          )}
 
           <div className={styles.formContainer}>
             <form onSubmit={handleSubmit} className={styles.chatForm}>
