@@ -21,6 +21,11 @@
   transition: all 0.3s;
 }
 
+.active {
+  background-color: rgba(59, 209, 189, 0.5);
+  border-radius: 1rem;
+}
+
 .channelName:hover {
   color: #4f6aeb;
   background-color: #a7b5f5;
