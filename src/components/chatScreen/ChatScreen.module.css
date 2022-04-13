@@ -1,8 +1,8 @@
 .chatScreenContainer {
   position: relative;
-  width: 70%;
+  width: 90%;
   margin: 0 auto;
-  height: calc(100vh - 5rem);
+  height: 90vh;
   padding: 2rem;
   border: 1px solid #4f6aeb;
   border-radius: 2rem;
@@ -17,20 +17,13 @@
 
 .collectionName {
   position: sticky;
-  top: 0;
+  top: -0.1rem;
+  text-align: center;
   width: 100%;
   background-color: rgba(243, 243, 245);
   border-bottom: 1px solid #4f6aeb;
   color: #4f6aeb;
   margin-bottom: 1rem;
-}
-
-.upArrow {
-  position: absolute;
-  top: 1.9rem;
-  right: 4rem;
-  width: 2rem;
-  display: none;
 }
 
 .dummyDiv {
@@ -58,11 +51,25 @@
   border: 1px solid rgba(79, 105, 235, 0.4);
 }
 
-.text {
+.text,
+.myText {
   padding: 1rem;
   border: 1px solid #a7b5f5;
-  border-radius: 2rem;
+
   font-size: 1.4rem;
+}
+
+.text {
+  border-top-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+
+.myText {
+  background-color: rgba(59, 209, 189, 0.5);
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  border-top-right-radius: 2rem;
 }
 
 .userName {
@@ -129,15 +136,9 @@
   transform: rotate(90deg) translateY(-0.4rem);
 }
 
-@media (max-width: 85em) {
-  .chatScreenContainer {
-    width: 60%;
-  }
-}
-
 @media (max-width: 41em) {
   .chatScreenContainer {
-    width: 90%;
+    width: 85%;
   }
 
   .upArrow {

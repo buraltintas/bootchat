@@ -18,12 +18,17 @@ const UserProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState([]);
   const [collectionName, setCollectionName] = useState('sohbet');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
 
   const getCollectionName = (text) => {
     setCollectionName(text);
+  };
+
+  const menuOpenHandler = (e) => {
+    setIsMenuOpen(e ? e : (prev) => !prev);
   };
 
   useEffect(() => {
@@ -73,6 +78,8 @@ const UserProvider = ({ children }) => {
         messages,
         collectionName,
         getCollectionName,
+        isMenuOpen,
+        menuOpenHandler,
       }}
     >
       {children}

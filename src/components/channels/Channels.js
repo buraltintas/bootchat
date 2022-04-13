@@ -3,25 +3,34 @@ import { userContext } from '../context/userContext';
 import styles from './Channels.module.css';
 
 const Channels = () => {
-  const { getCollectionName } = useContext(userContext);
+  const { getCollectionName, menuOpenHandler } = useContext(userContext);
 
   return (
     <div className={styles.channelsContainer}>
       <div
-        onClick={() => getCollectionName('sohbet')}
+        onClick={() => {
+          getCollectionName('sohbet');
+          menuOpenHandler();
+        }}
         className={styles.channelName}
       >
         <p className={styles.hash}>#</p>{' '}
         <h2 className={styles.channelTitle}>Sohbet</h2>
       </div>
       <div
-        onClick={() => getCollectionName('not paylaşımı')}
+        onClick={() => {
+          getCollectionName('not paylaşımı');
+          menuOpenHandler();
+        }}
         className={styles.channelName}
       >
         <p className={styles.hash}>#</p> <h2>Not Paylaşımı</h2>
       </div>
       <div
-        onClick={() => getCollectionName('test ve geliştirme')}
+        onClick={() => {
+          getCollectionName('test ve geliştirme');
+          menuOpenHandler();
+        }}
         className={styles.channelName}
       >
         <p className={styles.hash}>#</p> <h2>Test & Geliştirme</h2>

@@ -1,4 +1,5 @@
 .logoContainer {
+  position: relative;
   margin-top: 2rem;
   display: flex;
   width: 100%;
@@ -14,4 +15,22 @@
 .logoName {
   font-family: 'Source Code Pro';
   font-size: 3rem;
+}
+
+.menuIcon {
+  position: absolute;
+  right: -3rem;
+  background-color: rgba(79, 105, 235, 0.9);
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  width: 3rem !important;
+  cursor: pointer;
+  transform: rotate(0);
+}
+
+.closeMenuIcon {
+  position: absolute;
+  transform: rotate(180deg);
+  right: 0.8rem;
+  background-color: transparent;
 }

@@ -36,13 +36,6 @@ const ChatScreen = () => {
     }
   }, [messages]);
 
-  const goUp = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
   return (
     <>
       {isLoggedIn ? (
@@ -52,21 +45,7 @@ const ChatScreen = () => {
               #{' '}
               {collectionName.charAt(0).toUpperCase() + collectionName.slice(1)}
             </h1>
-            <svg
-              onClick={goUp}
-              className={styles.upArrow}
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              stroke='#4f6aeb'
-              stroke-width='2'
-            >
-              <path
-                stroke-linecap='round'
-                stroke-linejoin='round'
-                d='M5 10l7-7m0 0l7 7m-7-7v18'
-              />
-            </svg>
+
             {messages.length > 0 &&
               messages
                 .sort(function (x, y) {
@@ -92,8 +71,18 @@ const ChatScreen = () => {
                         src={message.photo}
                         alt='user profile'
                       />
-                      <p className={styles.text}>{message.message}</p>
-                      <p className={styles.userName}>{message.name}</p>
+                      <p
+                        className={
+                          message.email === user.email
+                            ? styles.myText
+                            : styles.text
+                        }
+                      >
+                        {message.message}
+                      </p>
+                      <p className={styles.userName}>
+                        {message.email !== user.email && message.name}
+                      </p>
                       <p className={styles.dateAndTime}>{`${day.slice(
                         -2
                       )}/${month.slice(-2)}/${date.getFullYear()}`}</p>
@@ -103,7 +92,9 @@ const ChatScreen = () => {
                     </div>
                   );
                 })}
-            <div ref={dummy} className={styles.dummyDiv}></div>
+            {messages.length > 10 && (
+              <div ref={dummy} className={styles.dummyDiv}></div>
+            )}
           </div>
 
           <div className={styles.formContainer}>

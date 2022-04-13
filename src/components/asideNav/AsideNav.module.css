@@ -1,20 +1,23 @@
 .asideNavContainer {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 25%;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #4f6aeb;
-  outline: 1rem solid #a7b5f5;
+  background-color: rgba(79, 105, 235, 0.9);
+  /* outline: 1rem solid #a7b5f5; */
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
   color: rgb(255, 255, 255);
+  z-index: 999;
+  transform: translateX(-99%);
+  transition: all 0.3s;
 }
 
-@media (max-width: 85em) {
-  .asideNavContainer {
-    width: 40%;
-  }
+.openAsideContainer {
+  transform: translateX(0);
 }
 
 @media (max-width: 41em) {

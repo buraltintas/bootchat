@@ -1,11 +1,9 @@
 .container {
-  width: 100%;
+  width: 100vw;
+  overflow: hidden;
+  height: 100vh;
   display: flex;
   align-items: center;
-}
 
-@media (max-width: 41em) {
-  .container {
-    flex-direction: column;
-  }
+  position: relative;
 }
