@@ -1,3 +1,20 @@
+# BootChat
+
+Instant messaging application.
+
+- You can login with your Google account.
+- Select a channel in aside menu and start messaging.
+- You can see messages in chat screen instantly.
+
+Live: https://bootchat.vercel.app/
+
+![Alt text](https://i.ibb.co/GdKJMkP/1.png?raw=true 'Optional Title')
+
+![Alt text](https://i.ibb.co/5kSnLtK/2.png?raw=true 'Optional Title')
+
+![Alt text](https://i.ibb.co/SPpLwbM/3.png?raw=true 'Optional Title')
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
